@@ -19,3 +19,39 @@ Use Node.js:
 
 Don't use Node.js:
 - Applications with heavy server-side processing (CPU-intensive)
+
+---------- 6 ----------
+> node
+Opens Node REPL (read-eval-print-loop) and we can write our code in the terminal.
+
+> .exit    or     Ctrl + D
+Exits Node REPL.
+
+> Ctrl + L
+Clears console
+
+> Tab
+Shows all the global variables available in Node
+
+> _
+Previous result (i.e. 3 * 8 = 24; _ + 6 = 30)
+
+> String. + Tab
+Shows all of the methods available on String. We can do that with any global variable
+
+---------- 7 ----------
+> node index.js
+Executes index.js
+
+Node.js is built on the concept of modules where all kinds of additional functionality is stored in a module. For example, functionality of reading files is inside of FS (File System) module. We use a module by including it into our code like this:
+   const fs = require('fs');
+
+---------- 8 ----------
+fs.readFileSync('pathToFile', 'characterEncoding')
+Reads file synchronously and returns the data
+
+\n
+Goes to a new line
+
+fs.writeFileSync('pathToFile', whatToOutput);
+Creates a new file and writes to it
