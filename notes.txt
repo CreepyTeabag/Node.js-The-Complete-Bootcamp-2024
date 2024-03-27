@@ -19,6 +19,7 @@ Use Node.js:
 
 Don't use Node.js:
 - Applications with heavy server-side processing (CPU-intensive)
+      CPU = central processing unit, центральный процессор
 
 ---------- 6 ----------
 > node
@@ -55,3 +56,18 @@ Goes to a new line
 
 fs.writeFileSync('pathToFile', whatToOutput);
 Creates a new file and writes to it
+
+---------- 9 ----------
+Synchronous code: each statement is processed one after another, line by line. This code is blocking, because a certain operation can only be executed only after the one before ahs finished.
+
+Asynchronous code is non-blocking, so we offload heavy work to be worked on in the background. And then, once that work is done, a callback function that we registered before is called to handle the result. So the main code continues working while the heavy process is running in the background.
+
+Node.js is single-threaded, which means that whenever users are interacting with the application, the code that is run for each user will be executed all in the same thread at the same place in the computer running the application.
+This means that if one user blocks the code in a synchronous way, all the other users will have to wait for that execution to finish. So it's our job as developers to avoid this kind of situation.
+
+So basically Node.js is single-threaded, but it sends all the heavy stuff to the background to make single thread work faster. That's how Node.js implements non-blocking I/O (input/output) model. And that's why Node.js is completely designed around callbacks.
+
+But callbacks !== asynchronous code.
+
+---------- 10 ----------
+It is very common in Node.js to have error first, data second in arguments in a callback.
