@@ -71,3 +71,89 @@ But callbacks !== asynchronous code.
 
 ---------- 10 ----------
 It is very common in Node.js to have error first, data second in arguments in a callback.
+
+---------- 11 ----------
+const server = http.createServer((req, res) => {
+   res.end('Hello from the server!');
+});
+Accepts a callback function which will be fired off each time a new request hits our server.
+
+res.end()
+Sends back a simple response.
+
+server.listen(port, 'hostname', () => {callbackFn});
+
+
+When we createServer(), the process doesn't stop running. It waits for requests to come in.
+We do the request by simply hitting the url.
+When the node is running, we can hit Ctrl + C to exit the process.
+
+---------- 12 ----------
+Routing means implementing different actions for different URLs.
+res.writeHead() can send status code (the error) and the headers.
+Headers is a piece of information about the response that we are sending back.
+For example, 'Content-type': 'text/html' lets browser know that we're sending some HTML. We can also send our own headers.
+Headers and status code always need to be sent before we send out the response!
+Routes that we write in our code and the routes that we write in the URL have nothing oto do with our projects' file system.
+
+---------- 13 ----------
+An API is a service from which we can request some data. For example, the data that the user wants to request is data about the products that we are offering in Node farm.
+When we specify the path to a file, the './' means the directory form which we are starting Node. But that con be inconvenient, so it's better to do it like this:
+   fs.readFile(`${__dirname}/dev-data/data.json`)
+Where '__dirnam' is where the file is located.
+However, in the require() function './' means the current working directory and not the place we execute the script from.
+
+The code that is outside of callback functions is executed only once, so it can synchronous.
+
+---------- 15 ----------
+temp.replace(/{%PRODUCTNAME%}/g, product.productName);
+Will replace all of the instances of '{%PRODUCTNAME%}'.
+
+---------- 16 ----------
+url.parse(req.url, true)
+Returns an object created from query form the URL.
+
+---------- 17 ----------
+In Node.js every single file is treated as a module. We can write our functions in different files and import them where we need them.
+The module will look something like this:
+module.exports = () => {smth}
+
+And we import the function like this:
+const fnName = require('./modules/moduleName');
+
+---------- 18 ----------
+NPM is both the command line interface app that we use to manage the packages and also the repository itself.
+https://www.npmjs.com/ is where all of the NPM packages are hosted.
+NPM is a software that we use to manage the third party open-source packages that we choose to include and use in our project.
+NPM interface comes with Node.js.
+
+npm init
+Creates a package.json file, which is a configuration file of our project where all kinds of data about the project is stored.
+
+---------- 19 ----------
+There are two types of packages that we can install. They are:
+- simple (regular) dependencies
+      They will be included into our own code. Our code depends on them to work correctly.
+      We can install them like this:
+      npm install <packageName>
+
+- development dependencies
+      Tools for development. For example, code bundler like WebPack, a debugger tool or a testing library.
+      Our code doesn't really depend on them, we simply use them to develop our applications.
+      We can install them like this:
+      npm install <packageName> --save-dev
+
+Slugify package  is used to create better URLs. Nodemon is used to automatically restart the server whenever we change something in the files. So instead of doing this every time we change something:
+   node index.js
+   Ctrl + C
+We can do this instead:
+   nodemon index.js
+And it'll automatically restart everything.
+
+There are two types of installs of NPM packages.
+- locally
+      Are installed in the project folder and aren't going to work anywhere else.
+- globally
+      Available in any and every folder on your machine. A package should be installed globally when it provides an executable command that you can run from the command line interface.
+      We can do it like this:
+      npm install <packageName> --global
